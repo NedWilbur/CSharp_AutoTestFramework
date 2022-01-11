@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _WebFramework
 {
-    internal static class Util
+    public static class Util
     {
         // Driver Config
         private static ATB.Config Config = new(ATB.Browser.Chrome)
@@ -17,14 +17,11 @@ namespace _WebFramework
             Resolution = new Size(1920, 1080),
         };
 
-        public static class WebUtil
+        public static Tuple<WebDriver, Views.Views> NewBrowser()
         {
-            public static Tuple<WebDriver, Views.Views> NewBrowser()
-            {
-                WebDriver driver = new WebDriver(Config);
-                Views.Views view = new(driver);
-                return Tuple.Create(driver, view);
-            }
+            WebDriver driver = new WebDriver(Config);
+            Views.Views view = new(driver);
+            return Tuple.Create(driver, view);
         }
     }
 }
