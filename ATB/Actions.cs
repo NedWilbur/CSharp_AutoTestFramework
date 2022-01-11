@@ -65,5 +65,12 @@ namespace _ATB
             Log.Info($"Getting attribute value '{attribute}' of: {element}");
             return FindElement(element).GetAttribute(attribute);
         }
+
+        // Browser Actions (TODO: Add more actions & move to own sub class - Actions.Browser.*)
+        public void Quit()
+        {
+            Log.Info("Quiting browser");
+            Driver.Quit();
+        }
     }
 }
