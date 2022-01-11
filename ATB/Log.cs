@@ -12,10 +12,14 @@ namespace _ATB
     {
         public enum Level { Debug, Info, Success, Warn, Error }
 
-        private static void LogMessage(Level level, string message) {
+        private static void LogMessage(Level level, string message)
+        {
             string logMessage = $"{level} | {message}";
             Console.WriteLine(logMessage);
+
+            if (level == Level.Error) throw new Exception(logMessage);
         }
+
 
         public static void Debug(string message) => LogMessage(Level.Debug, message);
         public static void Info(string message) => LogMessage(Level.Info, message);

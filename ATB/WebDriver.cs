@@ -9,12 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _ATB.Driver
+namespace _ATB
 {
     public class WebDriver
     {
-        internal IWebDriver Driver { get; }
-        internal Config Config { get; }
+        public IWebDriver Driver { get; }
+        public Config Config { get; }
 
         public WebDriver(Config config)
         {

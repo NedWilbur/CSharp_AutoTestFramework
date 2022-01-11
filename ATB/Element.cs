@@ -4,12 +4,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium;
+
 
 namespace _ATB
 {
     public enum By { Id, ClassName, CssSelector, XPath }
 
-    internal class Element
+    public class Element
     {
         public By By { get; }
         public string Path { get; }
