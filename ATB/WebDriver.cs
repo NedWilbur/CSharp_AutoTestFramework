@@ -15,6 +15,7 @@ namespace _ATB
     {
         public IWebDriver Driver { get; }
         public Config Config { get; }
+        public Actions Actions { get; }
 
         public WebDriver(Config config)
         {
@@ -36,8 +37,8 @@ namespace _ATB
             Driver.Manage().Timeouts().AsynchronousJavaScript = Config.AsynchronousJavaScriptTimeout;
             Driver.Manage().Timeouts().PageLoad = Config.PageLoadTimeout;
 
-            // TODO: Navigate to base URL
-            // TODO: Create Actions object to tie to this browser
+            Actions = new Actions(this);
+            Driver.Navigate().GoToUrl(Config.BaseUrl);
         }
     }
 }

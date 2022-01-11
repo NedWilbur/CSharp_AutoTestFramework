@@ -1,6 +1,7 @@
 ﻿using _WebFramework.Views.Home;
+using _ATB;
 
-namespace WebFramework
+namespace _WebFramework.Views
 {
     /// <summary>
     /// Home for all defined POMs
@@ -9,9 +10,9 @@ namespace WebFramework
     {
         public HomeView Home { get; }
 
-        public Views()
+        public Views(WebDriver driver)
         {
-            Home = new HomeView();
+            Home = new HomeView(driver);
         }
     }
 }

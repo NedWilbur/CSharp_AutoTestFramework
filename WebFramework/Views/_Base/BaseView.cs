@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using _ATB;
 
 namespace _WebFramework.Views.Home
 {
     public class BaseView
     {
-        public string Name { get; set; }
-        public string Url { get; set; }
-        public string HeaderText { get; set; }
+        Actions Actions { get; }
 
-        public BaseView(string name) => Name = name;
+        public BaseView(WebDriver driver)
+        {
+            Actions = driver.Actions;
+        }
     }
 }
