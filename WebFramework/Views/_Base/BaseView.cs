@@ -9,7 +9,7 @@ namespace _WebFramework.Views.Home
 {
     public class BaseView
     {
-        Actions Actions { get; }
+        protected Actions Actions { get; }
 
         public BaseView(WebDriver driver)
         {

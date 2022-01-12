@@ -9,10 +9,12 @@ namespace _WebFramework.Views
     public class Views
     {
         public HomeView Home { get; }
+        public CheckboxesView Checkboxes { get; }
 
         public Views(WebDriver driver)
         {
             Home = new HomeView(driver);
+            Checkboxes = new CheckboxesView(driver);
         }
     }
 }

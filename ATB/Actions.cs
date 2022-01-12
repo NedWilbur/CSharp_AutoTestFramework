@@ -66,6 +66,12 @@ namespace _ATB
             return FindElement(element).GetAttribute(attribute);
         }
 
+        public bool IsSelected(Element element)
+        {
+            Log.Info($"Getting if element is selected: {element}");
+            return FindElement(element).Selected;
+        }
+
         // Browser Actions (TODO: Add more actions & move to own sub class - Actions.Browser.*)
         public void Quit()
         {

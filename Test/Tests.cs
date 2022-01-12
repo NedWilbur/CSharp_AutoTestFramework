@@ -10,9 +10,13 @@ namespace Test
     public class Tests : TestBase
     {
         [Test]
-        public void Test1()
+        [Category]
+        [Description("Checkboxes default value")]
+        public void CheckboxDefaultState()
         {
-            Assert.True(1 == 1);
+            View.Home.ClickLink("Checkboxes");
+            Assert.IsFalse(View.Checkboxes.Checkbox1IsSelected());
+            Assert.IsTrue(View.Checkboxes.Checkbox2IsSelected());
         }
     }
 }
