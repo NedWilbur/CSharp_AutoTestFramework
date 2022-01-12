@@ -12,6 +12,8 @@ namespace _WebFramework.Views.Home
         private CheckboxesViewElements Elements { get; } = new CheckboxesViewElements();
         public CheckboxesView(WebDriver driver) : base(driver) { }
 
+        public void ClickCheckbox1() => Actions.Click(Elements.Checkbox1);
+        public void ClickCheckbox2() => Actions.Click(Elements.Checkbox2);
         public bool Checkbox1IsSelected() => Actions.IsSelected(Elements.Checkbox1);
         public bool Checkbox2IsSelected() => Actions.IsSelected(Elements.Checkbox2);
     }

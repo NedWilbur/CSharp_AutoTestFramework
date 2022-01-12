@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebFramework\_WebFramework.csproj" />
+    <ProjectReference Include="..\WebFramework\WebFramwork.csproj" />
   </ItemGroup>
 
 </Project>
