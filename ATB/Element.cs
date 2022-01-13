@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 
 
-namespace _ATB
+namespace AutoTestBase
 {
     public enum By { Id, ClassName, CssSelector, XPath }
 

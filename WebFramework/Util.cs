@@ -1,4 +1,4 @@
-﻿using _ATB;
+﻿using AutoTestBase;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,7 +11,7 @@ namespace _WebFramework
     public static class Util
     {
         // Driver Config
-        private static ATB.Config Config = new(ATB.Browser.Chrome)
+        private static AutoTestBase.Config Config = new(AutoTestBase.Browser.Chrome)
         {
             BaseUrl = "http://the-internet.herokuapp.com/",
             Resolution = new Size(1920, 1080),

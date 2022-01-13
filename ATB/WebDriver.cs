@@ -1,4 +1,4 @@
-﻿using ATB;
+﻿using AutoTestBase;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _ATB
+namespace AutoTestBase
 {
     public class WebDriver
     {

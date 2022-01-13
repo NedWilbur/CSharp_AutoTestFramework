@@ -1,10 +1,10 @@
-﻿using _ATB;
+﻿using AutoTestBase;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using System.Drawing;
 
-namespace ATB
+namespace AutoTestBase
 {
     public enum Browser { Chrome, Firefox, Edge }
 
@@ -20,7 +20,7 @@ namespace ATB
         public TimeSpan PageLoadTimeout { get; set; } = TimeSpan.FromMinutes(1);
         public TimeSpan AsynchronousJavaScriptTimeout { get; set; } = TimeSpan.FromSeconds(30);
 
-        public Config(ATB.Browser browser)
+        public Config(AutoTestBase.Browser browser)
         {
             switch (browser)
             {

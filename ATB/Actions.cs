@@ -1,20 +1,23 @@
-﻿using OpenQA.Selenium;
+﻿using AutoTestBase;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _ATB
+namespace AutoTestBase
 {
 
     public class Actions
     {
         internal IWebDriver Driver { get; }
+        public WaitFor WaitFor { get; }
 
         public Actions(WebDriver webDriver)
         {
             Driver = webDriver.Driver;
+            WaitFor = new WaitFor(webDriver);
         }
 
         private List<IWebElement> FindElements(Element element, bool throwException = true)
@@ -33,8 +36,14 @@ namespace _ATB
 
             return elements.ToList();
         }
-
         private IWebElement FindElement(Element element) => FindElements(element).First();
+
+        // TODO: Move to own class with overloads such as Sleep.Seconds(int x), Sleep.Ms...
+        public void Sleep(int ms)
+        {
+            Log.Info($"Sleeping for {ms}");
+            Task.Delay(ms).Wait();
+        }
 
         public void Click(Element element)
         {

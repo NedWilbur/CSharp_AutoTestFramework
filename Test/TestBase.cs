@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using _WebFramework;
-using _ATB;
+using AutoTestBase;
 using System;
 
 [assembly: LevelOfParallelism(5)]
