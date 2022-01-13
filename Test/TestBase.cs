@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using _WebFramework;
+using WebFramework;
 using AutoTestBase;
 using System;
 
@@ -10,7 +10,7 @@ namespace Test
     public class TestBase
     {
         private WebDriver Driver { get; set; }
-        internal _WebFramework.Views.Views View { get; private set; }
+        internal WebFramework.Views.Views View { get; private set; }
 
         [OneTimeSetUp]
         public void SetupOneTimeSetUp()

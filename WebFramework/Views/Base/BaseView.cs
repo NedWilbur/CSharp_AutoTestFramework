@@ -1,6 +1,6 @@
 ﻿using AutoTestBase;
 
-namespace _WebFramework.Views.Home
+namespace WebFramework.Views.Base
 {
     public class BaseView
     {
@@ -10,5 +10,8 @@ namespace _WebFramework.Views.Home
         {
             Actions = driver.Actions;
         }
+
+        // Methods inherited by all POMs
+        public void ExampleMethod() => throw new NotImplementedException();
     }
 }
