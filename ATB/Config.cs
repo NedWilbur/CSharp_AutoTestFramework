@@ -13,14 +13,14 @@ namespace AutoTestBase
         public dynamic BrowserOptions { get; set; }
 
         // Browser
-        public string BaseUrl { get; set; }
+        public string BaseUrl { get; set; } = "http://the-internet.herokuapp.com/";
         public Browser Browser { get; set; } = Browser.Chrome;
         public Size Resolution { get; set; } = new(1920, 1080);
         public TimeSpan ImplicitWait { get; set; } = TimeSpan.FromSeconds(30);
         public TimeSpan PageLoadTimeout { get; set; } = TimeSpan.FromMinutes(1);
         public TimeSpan AsynchronousJavaScriptTimeout { get; set; } = TimeSpan.FromSeconds(30);
 
-        public Config(AutoTestBase.Browser browser)
+        public Config(Browser browser)
         {
             switch (browser)
             {

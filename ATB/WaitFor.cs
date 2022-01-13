@@ -49,7 +49,7 @@ namespace AutoTestBase
                 }
                 catch (Exception e)
                 {
-                    Log.Debug(e.ToString());
+                    Log.Error(e.ToString());
                 }
                 finally
                 {
@@ -87,7 +87,7 @@ namespace AutoTestBase
                 }
                 catch (Exception e)
                 {
-                    Log.Debug(e.ToString());
+                    Log.Error(e.ToString());
                 }
                 finally
                 {

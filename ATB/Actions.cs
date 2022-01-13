@@ -85,7 +85,7 @@ namespace AutoTestBase
         public void Quit()
         {
             Log.Info("Quiting browser");
-            Driver.Quit();
+            Driver?.Quit();
         }
     }
 }

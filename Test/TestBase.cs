@@ -9,8 +9,8 @@ namespace Test
 {
     public class TestBase
     {
-        internal WebDriver Driver { get; private set; }
-        internal _WebFramework.Views.Views View { get; private set; }
+        internal WebDriver? Driver { get; private set; }
+        internal _WebFramework.Views.Views? View { get; private set; }
 
         [OneTimeSetUp]
         public void SetupOneTimeSetUp()
@@ -27,7 +27,7 @@ namespace Test
         [TearDown]
         public void TearDown()
         {
-            Driver.Actions.Quit();
+            Driver?.Actions.Quit();
         }
 
         [OneTimeTearDown]
