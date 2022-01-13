@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
+using System.value;
 using System.Threading.Tasks;
 
 namespace AutoTestBase
@@ -57,17 +57,23 @@ namespace AutoTestBase
                 }
             }
 
-            Log.Error($"FAILED: {logMessage}");
+            Log.Error($"FAILED {logMessage}");
             return false;
         }
 
-        public bool AttributeEqual(Element element, string attribute, string value) => _AttributeEqual(element, attribute, value, false);
-        public bool AttributeNotEqual(Element element, string attribute, string value) => _AttributeEqual(element, attribute, value, true);
-        private bool _AttributeEqual(Element element, string attribute, string value, bool reverse)
+        public bool AttributeEqual(Element element, string attribute, string value) => Attribute(element, attribute, value, true, false);
+        public bool AttributeNotEqual(Element element, string attribute, string value) => Attribute(element, attribute, value, true, true);
+        public bool AttributeContain(Element element, string attribute, string value) => Attribute(element, attribute, value, false, false);
+        public bool AttributeNotContain(Element element, string attribute, string value) => Attribute(element, attribute, value, false, true);
+        private bool Attribute(Element element, string attribute, string value, bool exact, bool reverse)
         {
-            string logMessage = reverse
+            string logMessage;
+            if (reverse && exact) logMessage = reverse
                 ? $"Waiting for {element} attribute {attribute} to NOT equal {value}"
                 : $"Waiting for {element} attribute {attribute} to equal {value}";
+            else logMessage = reverse
+                ? $"Waiting for {element} attribute {attribute} to NOT contain {value}"
+                : $"Waiting for {element} attribute {attribute} to contain {value}";
             Log.Info(logMessage);
 
             Stopwatch stopwatch = new();
@@ -76,10 +82,16 @@ namespace AutoTestBase
             {
                 try
                 {
-                    if (!reverse ^ Actions.GetAttribute(element, attribute).Equals(value))
-                        return true;
-                    else if (reverse ^ !Actions.GetAttribute(element, attribute).Equals(value))
-                        return true;
+                    if (exact)
+                        if (!reverse ^ Actions.GetAttribute(element, attribute).Equals(value))
+                            return true;
+                        else if (reverse ^ !Actions.GetAttribute(element, attribute).Equals(value))
+                            return true;
+                    else
+                        if (!reverse ^ Actions.GetAttribute(element, attribute).Contains(value))
+                            return true;
+                        else if (reverse ^ !Actions.GetAttribute(element, attribute).Contains(value))
+                            return true;
                 }
                 catch (StaleElementReferenceException)
                 {
@@ -95,8 +107,61 @@ namespace AutoTestBase
                 }
             }
 
-            Log.Error($"FAILED: {logMessage}");
+            Log.Error($"FAILED {logMessage}");
             return false;
         }
+
+        // TODO: Case insensitive version via .toLower/upper
+        public bool TextEqual(Element element, string value) => Text(element, value, true, false);
+        public bool TextNotEqual(Element element, string value) => Text(element, value, true, true);
+        public bool TextContain(Element element, string value) => Text(element, value, false, false);
+        public bool TextNotContain(Element element, string value) => Text(element, value, false, true);
+        private bool Text(Element element, string value, bool exact, bool reverse)
+        {
+            string logMessage;
+            if (reverse && exact) logMessage = reverse
+                ? $"Waiting for {element} value to NOT equal {value}"
+                : $"Waiting for {element} value to equal {value}";
+            else logMessage = reverse
+                ? $"Waiting for {element} value to NOT contain {value}"
+                : $"Waiting for {element} value to contain {value}";
+            Log.Info(logMessage);
+
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
+            while (stopwatch.ElapsedMilliseconds / 1000 <= timeoutInSeconds)
+            {
+                try
+                {
+                    if (exact)
+                        if (!reverse ^ Actions.GetText(element).Equals(value))
+                            return true;
+                        else if (reverse ^ !Actions.GetText(element).Equals(value))
+                            return true;
+                        else
+                        if (!reverse ^ Actions.GetText(element).Contains(value))
+                            return true;
+                        else if (reverse ^ !Actions.GetText(element).Contains(value))
+                            return true;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    Log.Warn($"StaleElementReference: {element}");
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e.ToString());
+                }
+                finally
+                {
+                    Actions.Sleep(500);
+                }
+            }
+
+            Log.Error($"FAILED {logMessage}");
+            return false;
+        }
+
+
     }
 }
