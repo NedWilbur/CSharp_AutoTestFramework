@@ -1,4 +1,6 @@
-﻿namespace AutoTestBase
+﻿using NUnit.Framework;
+
+namespace AutoTestBase
 {
     public static class Log
     {
@@ -6,7 +8,8 @@
 
         private static void LogMessage(Level level, string message)
         {
-            string logMessage = $"{level} | {message}";
+            string logMessage = $"{level.ToString().ToUpper()} | {message}";
+            TestContext.Progress.Write(logMessage);
             Console.WriteLine(logMessage);
 
             if (level == Level.Error) throw new Exception(logMessage);

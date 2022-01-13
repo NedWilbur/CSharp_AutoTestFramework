@@ -21,6 +21,7 @@ namespace Test
         [SetUp]
         public void SetUp()
         {
+            Log.Info($"Starting {TestContext.CurrentContext.Test.Name} - {TestContext.CurrentContext.Test.Properties.Get("Description")}");
             (Driver, View) = Util.NewBrowser();
         }
 
