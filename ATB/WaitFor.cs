@@ -6,7 +6,8 @@ namespace AutoTestBase
     public class WaitFor
     {
         internal Actions Actions { get; }
-        private int timeoutInSeconds = 15;
+        private const int timeoutInSeconds = 15;
+        private const int loopDelayMs = 500;
 
         public WaitFor(Actions actions)
         {
@@ -32,9 +33,7 @@ namespace AutoTestBase
             {
                 try
                 {
-                    if (!reverse ^ Actions.Exist(element))
-                        return true;
-                    else if (reverse ^ !Actions.Exist(element))
+                    if (reverse != Actions.Exist(element))
                         return true;
                 }
                 catch (StaleElementReferenceException)
@@ -47,7 +46,7 @@ namespace AutoTestBase
                 }
                 finally
                 {
-                    Actions.Sleep(500);
+                    Actions.Sleep(loopDelayMs);
                 }
             }
 
@@ -63,29 +62,32 @@ namespace AutoTestBase
         {
             string logMessage;
             if (reverse && exact) logMessage = reverse
-                ? $"Waiting for {element} attribute {attribute} to NOT equal {value}"
-                : $"Waiting for {element} attribute {attribute} to equal {value}";
+                ? $"Waiting for {element} attribute {attribute} to NOT equal '{value}'"
+                : $"Waiting for {element} attribute {attribute} to equal '{value}'";
             else logMessage = reverse
-                ? $"Waiting for {element} attribute {attribute} to NOT contain {value}"
-                : $"Waiting for {element} attribute {attribute} to contain {value}";
+                ? $"Waiting for {element} attribute {attribute} to NOT contain '{value}'"
+                : $"Waiting for {element} attribute {attribute} to contain '{value}'";
             Log.Info(logMessage);
 
+            string currentValue = string.Empty;
             Stopwatch stopwatch = new();
             stopwatch.Start();
             while (stopwatch.ElapsedMilliseconds / 1000 <= timeoutInSeconds)
             {
                 try
                 {
+                    currentValue = Actions.GetAttribute(element, attribute);
+                    Log.Debug($"Current value = {currentValue}");
                     if (exact)
-                        if (!reverse ^ Actions.GetAttribute(element, attribute).Equals(value))
+                    {
+                        if (reverse != currentValue.Equals(value))
                             return true;
-                        else if (reverse ^ !Actions.GetAttribute(element, attribute).Equals(value))
-                            return true;
+                    }
                     else
-                        if (!reverse ^ Actions.GetAttribute(element, attribute).Contains(value))
+                    {
+                        if (reverse != currentValue.Contains(value))
                             return true;
-                        else if (reverse ^ !Actions.GetAttribute(element, attribute).Contains(value))
-                            return true;
+                    }
                 }
                 catch (StaleElementReferenceException)
                 {
@@ -97,11 +99,51 @@ namespace AutoTestBase
                 }
                 finally
                 {
-                    Actions.Sleep(500);
+                    Actions.Sleep(loopDelayMs);
                 }
             }
 
-            Log.Error($"FAILED {logMessage}");
+            Log.Error($"FAILED {logMessage}. Current value: {currentValue}");
+            return false;
+        }
+
+        // TODO: Greater/Less than + inclusive
+        public bool AttributeLength(Element element, string attribute, int length) => Attribute(element, attribute, length, true);
+        public bool AttributeNotLength(Element element, string attribute, int length) => Attribute(element, attribute, length, true);
+        private bool Attribute(Element element, string attribute, int length, bool reverse)
+        {
+            string logMessage = reverse
+                ? $"Waiting for {element} attribute {attribute}'s value length to equal '{length}'"
+                : $"Waiting for {element} attribute {attribute}'s value length to NOT equal '{length}'";
+            Log.Info(logMessage);
+
+            string currentValue = string.Empty;
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
+            while (stopwatch.ElapsedMilliseconds / 1000 <= timeoutInSeconds)
+            {
+                try
+                {
+                    currentValue = Actions.GetAttribute(element, attribute);
+                    Log.Debug($"Current value = {currentValue}");
+                    if (reverse != currentValue.Length.Equals(length))
+                         return true;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    Log.Warn($"StaleElementReference: {element}");
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e.ToString());
+                }
+                finally
+                {
+                    Actions.Sleep(loopDelayMs);
+                }
+            }
+
+            Log.Error($"FAILED {logMessage}. Current value: {currentValue}");
             return false;
         }
 
@@ -114,29 +156,32 @@ namespace AutoTestBase
         {
             string logMessage;
             if (reverse && exact) logMessage = reverse
-                ? $"Waiting for {element} value to NOT equal {value}"
-                : $"Waiting for {element} value to equal {value}";
+                ? $"Waiting for {element} value to NOT equal '{value}'"
+                : $"Waiting for {element} value to equal '{value}'";
             else logMessage = reverse
-                ? $"Waiting for {element} value to NOT contain {value}"
-                : $"Waiting for {element} value to contain {value}";
+                ? $"Waiting for {element} value to NOT contain '{value}'"
+                : $"Waiting for {element} value to contain '{value}'";
             Log.Info(logMessage);
 
+            string currentValue = string.Empty;
             Stopwatch stopwatch = new();
             stopwatch.Start();
             while (stopwatch.ElapsedMilliseconds / 1000 <= timeoutInSeconds)
             {
                 try
                 {
+                    currentValue = Actions.GetText(element);
+                    Log.Debug($"Current value = {currentValue}");
                     if (exact)
-                        if (!reverse ^ Actions.GetText(element).Equals(value))
+                    {
+                        if (!reverse != currentValue.Equals(value))
                             return true;
-                        else if (reverse ^ !Actions.GetText(element).Equals(value))
+                    }
+                    else
+                    {
+                        if (reverse != currentValue.Contains(value))
                             return true;
-                        else
-                        if (!reverse ^ Actions.GetText(element).Contains(value))
-                            return true;
-                        else if (reverse ^ !Actions.GetText(element).Contains(value))
-                            return true;
+                    }
                 }
                 catch (StaleElementReferenceException)
                 {
@@ -148,11 +193,11 @@ namespace AutoTestBase
                 }
                 finally
                 {
-                    Actions.Sleep(500);
+                    Actions.Sleep(loopDelayMs);
                 }
             }
 
-            Log.Error($"FAILED {logMessage}");
+            Log.Error($"FAILED {logMessage}. Current value: {currentValue}");
             return false;
         }
 
