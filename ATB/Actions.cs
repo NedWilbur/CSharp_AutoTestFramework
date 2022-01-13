@@ -11,7 +11,7 @@ namespace AutoTestBase
         public Actions(WebDriver webDriver)
         {
             Driver = webDriver.Driver;
-            WaitFor = new WaitFor(webDriver);
+            WaitFor = new WaitFor(this);
         }
 
         private List<IWebElement> FindElements(Element element, bool throwException = true)

@@ -8,9 +8,9 @@ namespace AutoTestBase
         internal Actions Actions { get; }
         private int timeoutInSeconds = 15;
 
-        public WaitFor(AutoTestBase.WebDriver driver)
+        public WaitFor(Actions actions)
         {
-            Actions = driver.Actions;
+            Actions = actions;
         }
 
         // TODO: One general loop; each waitfor being a custom object
