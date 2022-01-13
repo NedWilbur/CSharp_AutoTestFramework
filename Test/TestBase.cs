@@ -9,8 +9,8 @@ namespace Test
 {
     public class TestBase
     {
-        internal WebDriver? Driver { get; private set; }
-        internal _WebFramework.Views.Views? View { get; private set; }
+        private WebDriver Driver { get; set; }
+        internal _WebFramework.Views.Views View { get; private set; }
 
         [OneTimeSetUp]
         public void SetupOneTimeSetUp()

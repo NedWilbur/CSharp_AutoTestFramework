@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoTestBase;
+﻿using AutoTestBase;
 
 namespace _WebFramework.Views.Home
 {
