@@ -7,7 +7,7 @@ using System;
 
 namespace Test
 {
-    public class TestBase
+    public class Base
     {
         private WebDriver Driver { get; set; }
         internal WebFramework.Views.Views View { get; private set; }

@@ -15,11 +15,11 @@ namespace WebFramework.Views.Home
             Validate = new HomeViewValidate(this);
         }
 
-        public void ClickPreset(Preset preset) => Actions.Click(Elements.PresetsContainer.ButtonByText(preset));
+        public void ClickPreset(Preset preset) => Actions.Click(Elements.Presets.ButtonByText(preset));
         public void ClickGeneratePassword() 
         {
-            Actions.Click(Elements.GenerateContainer.GeneratePasswordButton);
-            Actions.WaitFor.AttributeNotLength(Elements.GenerateContainer.GeneratedPasswordsTextarea, "value", 0);
+            Actions.Click(Elements.Generate.GeneratePasswordButton);
+            Actions.WaitFor.AttributeNotLength(Elements.Generate.GeneratedPasswordsTextarea, "value", 0);
         }
 
         // Validate (TODO: Move to own class)
@@ -34,7 +34,7 @@ namespace WebFramework.Views.Home
                 Actions = view.Actions;
             }
 
-            private List<string> GetPasswords() => Actions.GetAttribute(Elements.GenerateContainer.GeneratedPasswordsTextarea, "value").Split('\n').ToList();
+            private List<string> GetPasswords() => Actions.GetAttribute(Elements.Generate.GeneratedPasswordsTextarea, "value").Split('\n').ToList();
 
             public void GeneratedPasswordsLength(int min, int max) =>
                 GetPasswords().ForEach(password => Assert.IsTrue(password.Length >= min && password.Length <= max,
