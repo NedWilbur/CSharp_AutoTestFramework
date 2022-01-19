@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTestBase", "ATB\AutoTestBase.csproj", "{A31D7146-DA32-4BBD-BB90-3ED74DAAEFC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTestBase", "AutoTestBase\AutoTestBase.csproj", "{A31D7146-DA32-4BBD-BB90-3ED74DAAEFC9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{57CF64AE-E2F6-419B-A47D-CF5A6FCE3E23}"
 EndProject

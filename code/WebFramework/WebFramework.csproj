@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ATB\AutoTestBase.csproj" />
+    <ProjectReference Include="..\AutoTestBase\AutoTestBase.csproj" />
   </ItemGroup>
 
 </Project>
