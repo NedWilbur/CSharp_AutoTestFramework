@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace AutoTestBase
 {
@@ -73,6 +74,20 @@ namespace AutoTestBase
         {
             Log.Info($"Getting if element is selected: {element}");
             return FindElement(element).Selected;
+        }
+
+        public void SelectOption(Element element, string text)
+        {
+            Log.Info($"Selecting option '{text}' for: {element}");
+            SelectElement selectElement = new SelectElement(FindElement(element));
+            selectElement.SelectByText(text);
+        }
+
+        public void SelectOption(Element element, int number)
+        {
+            Log.Info($"Selecting option #'{number}' for: {element}");
+            SelectElement selectElement = new SelectElement(FindElement(element));
+            selectElement.SelectByIndex(number);
         }
 
         // Browser Actions (TODO: Add more actions & move to own sub class - Actions.Browser.*)
