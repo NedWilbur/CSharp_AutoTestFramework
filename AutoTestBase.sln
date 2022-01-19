@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTestBase", "ATB\AutoTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{57CF64AE-E2F6-419B-A47D-CF5A6FCE3E23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebFramwork", "WebFramework\WebFramwork.csproj", "{ABBD1DD0-4460-4B90-BFC5-825B8F9718C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebFramework", "WebFramework\WebFramework.csproj", "{ABBD1DD0-4460-4B90-BFC5-825B8F9718C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

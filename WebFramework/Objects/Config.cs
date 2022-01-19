@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebFramwork.Objects
 {
+    public enum Setting { WORDS, TRANSFORMATIONS, SEPARATOR, PADDING_DIGITS, PADDING_SYMBOLS, LOADSAVE_CONFIG }
+
     public static class PresetConfig
     {
         public static Config AppleId = new("APPLEID")
