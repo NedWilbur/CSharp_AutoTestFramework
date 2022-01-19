@@ -60,5 +60,18 @@ namespace Test
 
             View.Home.Validate.GeneratedConfigEquals(expectedConfig);
         }
+
+        [Test]
+        [Category("Smoke")]
+        [Description("'Num. Passwords' setting generates selected number of passwords")]
+        public void TC14()
+        {
+            for (int i = 1; i <= 10; i++)
+            {
+                View.Home.SelectNumOfPasswords(i);
+                View.Home.ClickGeneratePassword();
+                View.Home.Validate.NumberOfGeneratedPasswords(i);
+            }
+        }
     }
 }

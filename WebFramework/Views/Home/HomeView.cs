@@ -120,7 +120,7 @@ namespace WebFramework.Views.Home
 
         public void ClickSaveConfigButton() => Actions.Click(Elements.Settings.LoadSave.SaveConfigButton);
         public void ClickLoadConfigButton() => Actions.Click(Elements.Settings.LoadSave.LoadConfigButton);
-
+        public void SelectNumOfPasswords(int number) => Actions.SelectOption(Elements.Generate.NumPasswordSelect, number.ToString());
         // Validate (TODO: Move to own class)
         public class HomeViewValidate
         {
@@ -173,6 +173,7 @@ namespace WebFramework.Views.Home
             }
 
             public void GeneratedConfigEquals(string text) => Assert.AreEqual(text, Actions.GetAttribute(Elements.Settings.LoadSave.ConfigField, "value").Replace("\r\n", string.Empty));
+            public void NumberOfGeneratedPasswords(int total) => Assert.AreEqual(total, GetPasswords().Count());
         }
     }
 }
