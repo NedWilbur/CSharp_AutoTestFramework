@@ -22,7 +22,7 @@ namespace WebFramwork.Objects
                 description: "EVERY word randomly CAPITALISED or NOT",
                 caseTransformation: "EVERY word randomly CAPITOLISED or NOT"),
             Seperator = new Config.SeperatorConfig(
-                description: "a character randomly chosen from the set:",
+                description: "a character randomly chosen from the set: -:.,",
                 type: "Random Character",
                 separators: new List<char> { '-', ':', '.', ',' }),
             PaddingDigits = new Config.PaddingDigitsConfig(
@@ -36,6 +36,35 @@ namespace WebFramwork.Objects
                 characterCoverage: null // TODO
                 )
          };
+
+        public static Config XKCD = new("XKCD")
+        {
+            Words = new Config.WordsConfig(
+                description: "4 words of between 4 and 8 letters from the english dictionary",
+                dictionary: Config.WordsConfig.DictionaryOption.English,
+                numberOfWords: 4,
+                minimumLength: 4,
+                maximumLength: 8),
+            Transformations = new Config.TransformationsConfig(
+                description: "EVERY word randomly CAPITALISED or NOT",
+                caseTransformation: "EVERY word randomly CAPITOLISED or NOT"),
+            Seperator = new Config.SeperatorConfig(
+                description: "the character -",
+                type: "Specified Character",
+                separators: new List<char> { '-' }),
+            PaddingDigits = new Config.PaddingDigitsConfig(
+                description: "-none-",
+                digitsBefore: 0,
+                digitsAfter: 0),
+            Summary = new Config.SummaryConfig(
+                structure: null,  // TODO
+                minLength: 19,
+                maxLength: 35,
+                characterCoverage: null // TODO
+                )
+        };
+
+        // TODO: Do for the rest of the preset configs
     }
 
     public class Config

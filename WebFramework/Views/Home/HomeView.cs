@@ -146,10 +146,29 @@ namespace WebFramework.Views.Home
                     $"Generated password length is NOT between {min} and {max}"));
 
             /// <summary>
+            /// Validate each generated passwords is within the given min/max range
+            /// </summary>
+            public void GeneratedPasswordsLength(WebFramwork.Objects.Config config) => GeneratedPasswordsLength(config.Summary.MinLength, config.Summary.MaxLength);
+
+            /// <summary>
             /// Validate generated password contains given text
             /// </summary>
             /// <param name="text">Text to validate is within password(s)</param>
             public void GeneratedPasswordContains(string text) => Assert.Contains(text, GetPasswords(), "Generated passwords does not contain text");
+
+            /// <summary>
+            /// Validate UI settings equals given config
+            /// </summary>
+            /// <param name="config"></param>
+            public void Settings(WebFramwork.Objects.Config config)
+            {
+                // TODO: Break out into individual methods for more usability. This method would simply call all other methods.
+                Assert.AreEqual(config.Words.Description, Actions.GetText(Elements.Settings.Words.Summary));
+                Assert.AreEqual(config.Transformations.Description, Actions.GetText(Elements.Settings.Transformations.Summary));
+                Assert.AreEqual(config.Seperator.Description, Actions.GetText(Elements.Settings.Separator.Summary));
+                Assert.AreEqual(config.PaddingDigits.Description, Actions.GetText(Elements.Settings.PaddingDigits.Summary));
+                // TODO: Validate all fields for each settings section. Currently only does a few fields for demo purposes.
+            }
         }
     }
 }

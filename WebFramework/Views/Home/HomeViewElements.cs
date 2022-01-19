@@ -30,6 +30,7 @@ namespace WebFramework.Views.Home
             {
                 public Element ExpandButton => new(By.CssSelector, "#section_words_icon[alt='Expand Section']");
                 public Element CollapseButton => new(By.CssSelector, "#section_words_icon[alt='Collapse Section']");
+                public Element Summary => new(By.Id, "section_words_summary");
 
                 public Element DictionarySelect => new(By.Id, "dict");
                 public Element WordCountSelect => new(By.Id, "num_words");
@@ -42,6 +43,7 @@ namespace WebFramework.Views.Home
             {
                 public Element ExpandButton => new(By.CssSelector, "#section_transformations_icon[alt='Expand Section']");
                 public Element CollapseButton => new(By.CssSelector, "#section_transformations_icon[alt='Collapse Section']");
+                public Element Summary => new(By.Id, "section_transformations_summary");
 
                 // TODO: define rest of elements
             }
@@ -51,6 +53,7 @@ namespace WebFramework.Views.Home
             {
                 public Element ExpandButton => new(By.CssSelector, "#section_separator_icon[alt='Expand Section']");
                 public Element CollapseButton => new(By.CssSelector, "#section_separator_icon[alt='Collapse Section']");
+                public Element Summary => new(By.Id, "section_separator_summary");
 
                 // TODO: define rest of elements
             }
@@ -60,6 +63,7 @@ namespace WebFramework.Views.Home
             {
                 public Element ExpandButton => new(By.CssSelector, "#section_padding_digits_icon[alt='Expand Section']");
                 public Element CollapseButton => new(By.CssSelector, "#section_padding_digits_icon[alt='Collapse Section']");
+                public Element Summary => new(By.Id, "section_padding_digits_summary");
 
                 // TODO: define rest of elements
             }
@@ -69,6 +73,8 @@ namespace WebFramework.Views.Home
             {
                 public Element ExpandButton => new(By.CssSelector, "#section_padding_symbols_icon[alt='Expand Section']");
                 public Element CollapseButton => new(By.CssSelector, "#section_padding_symbols_icon[alt='Collapse Section']");
+                public Element Summary => new(By.Id, "section_padding_symbols_summary");
+
 
                 // TODO: define rest of elements
             }
