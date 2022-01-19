@@ -85,6 +85,10 @@ namespace WebFramework.Views.Home
                 public Element ExpandButton => new(By.CssSelector, "#section_load_save_icon[alt='Expand Section']");
                 public Element CollapseButton => new(By.CssSelector, "#section_load_save_icon[alt='Collapse Section']");
 
+                public Element SaveConfigButton => new(By.Id, "save_config_btn");
+                public Element LoadConfigButton => new(By.Id, "load_config_btn");
+
+                public Element ConfigField => new(By.Id, "config_scratchspace");
                 // TODO: define rest of elements
             }
         }

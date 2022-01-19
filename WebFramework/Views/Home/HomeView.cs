@@ -118,6 +118,9 @@ namespace WebFramework.Views.Home
                 CollpaseSettingContainer(setting);
         }
 
+        public void ClickSaveConfigButton() => Actions.Click(Elements.Settings.LoadSave.SaveConfigButton);
+        public void ClickLoadConfigButton() => Actions.Click(Elements.Settings.LoadSave.LoadConfigButton);
+
         // Validate (TODO: Move to own class)
         public class HomeViewValidate
         {
@@ -159,7 +162,6 @@ namespace WebFramework.Views.Home
             /// <summary>
             /// Validate UI settings equals given config
             /// </summary>
-            /// <param name="config"></param>
             public void Settings(WebFramwork.Objects.Config config)
             {
                 // TODO: Break out into individual methods for more usability. This method would simply call all other methods.
@@ -169,6 +171,8 @@ namespace WebFramework.Views.Home
                 Assert.AreEqual(config.PaddingDigits.Description, Actions.GetText(Elements.Settings.PaddingDigits.Summary));
                 // TODO: Validate all fields for each settings section. Currently only does a few fields for demo purposes.
             }
+
+            public void GeneratedConfigEquals(string text) => Assert.AreEqual(text, Actions.GetAttribute(Elements.Settings.LoadSave.ConfigField, "value").Replace("\r\n", string.Empty));
         }
     }
 }
