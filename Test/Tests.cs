@@ -22,7 +22,22 @@ namespace Test
         {
             Config config = PresetConfig.AppleId;
 
-            View.Home.ClickPreset(Preset.APPLEID);
+            View.Home.ClickPreset(config.Preset);
+            View.Home.ExpandAllSettingContainers();
+            View.Home.ClickGeneratePassword();
+
+            View.Home.Validate.Settings(config);
+            View.Home.Validate.GeneratedPasswordsLength(config);
+        }
+
+        [Test]
+        [Category("Smoke")]
+        [Description("Password generation with `APPLEID` preset")]
+        public void TC3()
+        {
+            Config config = PresetConfig.XKCD;
+
+            View.Home.ClickPreset(config.Preset);
             View.Home.ExpandAllSettingContainers();
             View.Home.ClickGeneratePassword();
 

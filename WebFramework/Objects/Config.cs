@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebFramework.Views.Home;
 
 namespace WebFramwork.Objects
 {
@@ -12,6 +13,7 @@ namespace WebFramwork.Objects
     {
         public static Config AppleId = new("APPLEID")
         {
+            Preset = Preset.APPLEID,
             Words = new Config.WordsConfig(
                 description: "3 words of between 5 and 7 letters from the english dictionary",
                 dictionary: Config.WordsConfig.DictionaryOption.English,
@@ -39,6 +41,7 @@ namespace WebFramwork.Objects
 
         public static Config XKCD = new("XKCD")
         {
+            Preset = Preset.XKCD,
             Words = new Config.WordsConfig(
                 description: "4 words of between 4 and 8 letters from the english dictionary",
                 dictionary: Config.WordsConfig.DictionaryOption.English,
@@ -69,6 +72,7 @@ namespace WebFramwork.Objects
 
     public class Config
     {
+        public Preset Preset { get; set; }
         public string Name { get; set; }
         public string RegExValidationPattern { get; set; }
         public WordsConfig Words { get; set; }
