@@ -9,7 +9,7 @@ namespace Test
         [Test]
         [Category("Smoke")]
         [Description("Generate password with default settings")]
-        public void TC1()
+        public void TC01()
         {
             View.Home.ClickGeneratePassword();
             View.Home.Validate.GeneratedPasswordsLength(24, 36);
@@ -18,7 +18,7 @@ namespace Test
         [Test]
         [Category("Smoke")]
         [Description("Password generation with `APPLEID` preset")]
-        public void TC2()
+        public void TC02()
         {
             Config config = PresetConfig.AppleId;
 
@@ -33,7 +33,7 @@ namespace Test
         [Test]
         [Category("Smoke")]
         [Description("Password generation with `XKCD` preset")]
-        public void TC3()
+        public void TC03()
         {
             Config config = PresetConfig.XKCD;
 
@@ -45,7 +45,7 @@ namespace Test
             View.Home.Validate.GeneratedPasswordsLength(config);
         }
 
-        // Repeat for the rest of the presets
+        // Repeat TC02 & TC03 for the rest of the presets
 
         [Test]
         [Category("Smoke")]
